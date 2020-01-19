@@ -3,7 +3,7 @@
 #include <vector>
 #include "IpFilter.h"
 
-int main(int argc, char const *argv[])
+int main()
 {
     try
     {

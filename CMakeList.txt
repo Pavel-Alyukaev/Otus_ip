@@ -23,7 +23,7 @@ target_include_directories(IpFilter
 )
 
 target_link_libraries(IpFilter_cli PRIVATE
-    IpFilter
+    IpFilter 
 )
 
 

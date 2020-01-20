@@ -74,6 +74,28 @@ void IpFilter::printIp() const
     printIp(m_ipPool);
 }
 
+void IpFilter::saveIp(const Pool& pool, std::ofstream& file) const
+{
+
+    for (const auto& item : pool)
+    {
+        file << item[0];
+
+        for(int i = 1; i < item.size();++i)
+            file << "." << item[i];
+
+        file << std::endl;
+
+    }
+
+}
+
+void IpFilter::saveIp( std::ofstream& file) const
+{
+    saveIp(m_ipPool, file);
+}
+
+
 
 void IpFilter::sortIpPool()
 {

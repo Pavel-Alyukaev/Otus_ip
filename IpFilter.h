@@ -20,6 +20,9 @@ public:
     void printIp(const Pool& pool) const;
     void printIp() const;
 
+    void saveIp(const Pool& pool, std::ofstream& file) const;
+    void saveIp(std::ofstream& file) const;
+
     void sortIpPool();
     Pool filter(std::vector<short> mask1, short mask2 = -1);
 

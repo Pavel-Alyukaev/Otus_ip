@@ -38,7 +38,7 @@ void IpFilter::setIpPool()
 
 void IpFilter::loadIpPool()
 {
-    std::ifstream file("C:\\Users\\User\\Downloads\\ip_filter.tsv");
+    std::ifstream file("ip_filter.tsv");
 
     for (std::string line; std::getline(file, line);)
     {

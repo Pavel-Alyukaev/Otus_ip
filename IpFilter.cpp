@@ -81,7 +81,7 @@ void IpFilter::saveIp(const Pool& pool, std::ofstream& file) const
     {
         file << item[0];
 
-        for(int i = 1; i < item.size();++i)
+        for(unsigned int i = 1; i < item.size();++i)
             file << "." << item[i];
 
         file << std::endl;

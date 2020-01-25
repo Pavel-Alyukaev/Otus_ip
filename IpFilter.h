@@ -14,7 +14,7 @@ public:
 
     //Чтение ip адресов
     void setIpPool();
-    void loadIpPool();
+    void loadIpPool(std::istream&& stream);
 
     //Печать ip адресов
     void printIp(const Pool& pool) const;

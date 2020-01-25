@@ -21,26 +21,10 @@ std::vector<std::string> split(const std::string& str, char d)
     return r;
 }
 
-void IpFilter::setIpPool()
+void IpFilter::loadIpPool(std::istream&& stream)
 {
-    for (std::string line; std::getline(std::cin, line);)
-    {
-        if (line == "end")
-            break;
-        std::vector<std::string> v = split(line, '\t');
-        std::vector<std::string> ipString = split(v.at(0), '.');
-        std::vector<short> ip;
-        for (const auto& item : ipString)
-            ip.emplace_back(static_cast<short>(std::stoi(item)));
-        m_ipPool.push_back(ip);
-    }
-}
 
-void IpFilter::loadIpPool()
-{
-    std::ifstream file("ip_filter.tsv");
-
-    for (std::string line; std::getline(file, line);)
+    for (std::string line; std::getline(stream, line) && !line.empty();)
     {
         std::vector<std::string> v = split(line, '\t');
         std::vector<std::string> ipString = split(v.at(0), '.');
@@ -49,7 +33,6 @@ void IpFilter::loadIpPool()
             ip.emplace_back(static_cast<short>(std::stoi(item)));
         m_ipPool.push_back(ip);
     }
-    file.close();
 }
 
 void IpFilter::printIp(const Pool& pool) const
@@ -95,11 +78,9 @@ void IpFilter::saveIp( std::ofstream& file) const
     saveIp(m_ipPool, file);
 }
 
-
-
 void IpFilter::sortIpPool()
 {
-    std::sort(m_ipPool.begin(), m_ipPool.end(), [](auto& a, auto& b) { return (a > b); });
+    std::sort(m_ipPool.begin(), m_ipPool.end(), [](const auto& a, const auto& b) { return (a > b); });
 }
 
 Pool IpFilter::filter(std::vector<short> mask1, short mask2)

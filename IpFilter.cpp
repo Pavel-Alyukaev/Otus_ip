@@ -57,7 +57,7 @@ void IpFilter::printIp() const
     printIp(m_ipPool);
 }
 
-void IpFilter::saveIp(const Pool& pool, std::ofstream& file) const
+void IpFilter::saveIp(const Pool& pool, std::ostream& file) const
 {
 
     for (const auto& item : pool)
@@ -73,7 +73,7 @@ void IpFilter::saveIp(const Pool& pool, std::ofstream& file) const
 
 }
 
-void IpFilter::saveIp( std::ofstream& file) const
+void IpFilter::saveIp( std::ostream& file) const
 {
     saveIp(m_ipPool, file);
 }
@@ -93,7 +93,7 @@ Pool IpFilter::filter(std::vector<short> mask1, short mask2)
         ip_pool.erase(result, ip_pool.end());
     }
 
-    auto result = std::remove_if(ip_pool.begin(), ip_pool.end(), [&](std::vector<short> ip)
+    auto result = std::remove_if(ip_pool.begin(), ip_pool.end(), [&](const std::vector<short> &ip)
         {
             return mask2 >= 0 ? std::find(ip.begin(), ip.end(), mask2) == ip.end() : false;
         });
